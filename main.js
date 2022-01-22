@@ -8,9 +8,14 @@ signUpButton.addEventListener("click", () => {
 signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
+
+const apiTienda = document.querySelector(".container");
+const url = "https://tiendavirtualmern.herokuapp.com/api";
+fetch(url).then((response) => console.log(response));
+
 const signUpxButton = document.getElementById("signUpx");
 const signInxButton = document.getElementById("signInx");
-// Evento que recopila los datos del usuario
+// Register
 signUpxButton.addEventListener("click", function ssRegister() {
   function usuario(name, email, password) {
     this.name = name;
@@ -25,7 +30,6 @@ signUpxButton.addEventListener("click", function ssRegister() {
   const nuevoUsuario = new usuario(nameCapture, emailCapture, passCapture);
   // console.log(nuevoUsuario);
   // console.log(JSON.stringify(nuevoUsuario));
-  // REGISTER
   fetch("https://tiendavirtualmern.herokuapp.com/api/users", {
     method: "POST",
     body: JSON.stringify(nuevoUsuario),
@@ -33,6 +37,7 @@ signUpxButton.addEventListener("click", function ssRegister() {
   })
     .then((response) => response.json())
     .then((data) => console.log(data));
+  alert("Usuario creado exitosamente");
 });
 //LOGIN
 signInxButton.addEventListener("click", function ssLogin() {
@@ -40,9 +45,9 @@ signInxButton.addEventListener("click", function ssLogin() {
     this.email = email;
     this.password = password;
   }
-  let emailCapture = document.getElementById("email").value;
-  let passCapture = document.getElementById("password").value;
-  const userLogin = new user(emailCapture, passCapture);
+  let emailLogin = document.getElementById("emailLogin").value;
+  let passLogin = document.getElementById("passwordLogin").value;
+  const userLogin = new user(emailLogin, passLogin);
   fetch("https://tiendavirtualmern.herokuapp.com/api/users/login", {
     method: "POST",
     body: JSON.stringify(userLogin),
@@ -50,4 +55,6 @@ signInxButton.addEventListener("click", function ssLogin() {
   })
     .then((response) => response.json())
     .then((data) => console.log(data));
+    alert("Inicio de sesion exitoso")
 });
+// Code by: SatouKz
